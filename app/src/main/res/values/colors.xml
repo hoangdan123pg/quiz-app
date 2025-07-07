@@ -2,4 +2,29 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <!-- Màu chủ đạo (Lime Green) -->
+    <color name="colorPrimary">#89F336</color>
+    <color name="colorPrimaryDark">#65C92B</color>
+    <color name="colorAccent">#B4FF61</color>
+
+    <!-- Nền nền tối để làm nổi bật màu chủ đạo -->
+    <color name="backgroundDark">#1E1E1E</color>
+    <color name="backgroundLight">#F5F5F5</color>
+
+    <!-- Nút xác nhận (Success / Continue) -->
+    <color name="buttonConfirm">#2E7D32</color>
+
+    <!-- Nút cảnh báo (Warning / Attention) -->
+    <color name="buttonWarning">#FFB300</color>
+
+    <!-- Nút hủy / từ chối -->
+    <color name="buttonCancel">#D32F2F</color>
+
+    <!-- Nút phụ / trung lập -->
+    <color name="buttonSecondary">#90A4AE</color>
+
+    <!-- Màu chữ -->
+    <color name="textPrimary">#FFFFFF</color>
+    <color name="textSecondary">#B0BEC5</color>
+
 </resources>

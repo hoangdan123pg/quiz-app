@@ -40,4 +40,17 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    // Room components (Java-only)
+    val room_version = "2.6.1"
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version") // Dùng annotationProcessor cho Java
+
+    // Optional - RxJava support for Room
+    implementation("androidx.room:room-rxjava2:$room_version")
+
+    // Optional - Guava support for Room
+    implementation("androidx.room:room-guava:$room_version")
+
+    // Optional - Test helpers
+    testImplementation("androidx.room:room-testing:$room_version")
 }

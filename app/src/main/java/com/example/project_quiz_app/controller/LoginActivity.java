@@ -1,6 +1,9 @@
 package com.example.project_quiz_app.controller;
 
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +14,17 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.project_quiz_app.R;
 
 public class LoginActivity extends AppCompatActivity {
+    private EditText email;
+    private EditText password;
+    private Button btnLogin;
+    private TextView btnRegister;
+
+    private void bindingView(){
+
+    }
+    private void bindingAction(){
+
+    }
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.fragments.RegisterFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Tiêu đề -->
+        <TextView
+            android:id="@+id/title_register"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Register Account"
+            android:textSize="30sp"
+            android:textColor="@color/colorPrimary"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="32dp"/>
+
+        <!-- Label Email -->
+        <TextView
+            android:id="@+id/label_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:text="Email"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_register" />
+
+        <!-- Input Email -->
+        <EditText
+            android:id="@+id/email_register"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="32dp"
+            android:backgroundTint="@color/colorAccent"
+            android:ems="10"
+            android:hint="Enter your email"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/backgroundDark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/label_email" />
+
+        <!-- Label Password -->
+        <TextView
+            android:id="@+id/label_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
+            android:text="Password"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/email_register" />
+
+        <!-- Input Password -->
+        <EditText
+            android:id="@+id/password_register"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="32dp"
+            android:backgroundTint="@color/colorAccent"
+            android:ems="10"
+            android:hint="Enter your password"
+            android:inputType="textPassword"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/label_password" />
+
+        <!-- Label Confirm Password -->
+        <TextView
+            android:id="@+id/label_confirm_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
+            android:text="Confirm Password"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/password_register" />
+
+        <!-- Input Confirm Password -->
+        <EditText
+            android:id="@+id/confirm_password_register"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="32dp"
+            android:backgroundTint="@color/colorAccent"
+            android:ems="10"
+            android:hint="Re-enter your password"
+            android:inputType="textPassword"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/label_confirm_password" />
+
+        <!-- Label Name -->
+        <TextView
+            android:id="@+id/label_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
+            android:text="Name"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/confirm_password_register" />
+
+        <!-- Input Name -->
+        <EditText
+            android:id="@+id/name_register"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="32dp"
+            android:backgroundTint="@color/colorAccent"
+            android:ems="10"
+            android:hint="Enter your name"
+            android:inputType="textPersonName"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/label_name" />
+
+        <!-- Name have you account? -->
+        <TextView
+            android:id="@+id/back_login_fragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
+            android:text="Have you account?"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/name_register" />
+
+        <Button
+            android:id="@+id/btn_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Register"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/back_login_fragment" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
