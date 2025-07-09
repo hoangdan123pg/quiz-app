@@ -1,14 +1,272 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.fragments.CreateFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="create" />
+        android:background="#0D0D2D">
 
+        <!-- Header Section -->
+        <!--        <TextView-->
+        <!--            android:id="@+id/tv_header"-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="24dp"-->
+        <!--            android:layout_marginTop="32dp"-->
+        <!--            android:layout_marginEnd="24dp"-->
+        <!--            android:text="Chủ đề, chương, đơn vị"-->
+        <!--            android:textColor="#8a8a8a"-->
+        <!--            android:textSize="16sp"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent" />-->
+<!--        <EditText-->
+<!--            android:id="@+id/etCategory"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="Nhập chủ đề, nội dung môn học "-->
+<!--            android:padding="8dp"-->
+<!--            android:textColor="#FFFFFF"-->
+<!--            android:textColorHint="#888888"-->
+<!--            android:textSize="16sp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/etAIcanHelp"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="Nhập mô tả AI cần làm gì"-->
+<!--            android:padding="8dp"-->
+<!--            android:textColor="#FFFFFF"-->
+<!--            android:textColorHint="#888888"-->
+<!--            android:textSize="16sp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/etCategory" />-->
+
+<!--        &lt;!&ndash; Blue divider line &ndash;&gt;-->
+<!--        <View-->
+<!--            android:id="@+id/divider_blue"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="2dp"-->
+<!--            android:layout_marginStart="24dp"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:layout_marginEnd="24dp"-->
+<!--            android:background="#4169e1"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/etAIcanHelp" />-->
+
+        <!--        &lt;!&ndash; ScrollView for content &ndash;&gt;-->
+        <!--        <ScrollView-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="0dp"-->
+        <!--            android:layout_marginTop="24dp"-->
+        <!--            android:layout_marginBottom="80dp"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/divider_blue">-->
+
+        <!--            <LinearLayout-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:orientation="vertical"-->
+        <!--                android:paddingHorizontal="24dp">-->
+
+        <!--                &lt;!&ndash; Title Section &ndash;&gt;-->
+
+        <!--                <TextView-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:layout_marginBottom="16dp"-->
+        <!--                    android:text="TIÊU ĐỀ"-->
+        <!--                    android:textColor="#ffffff"-->
+        <!--                    android:textSize="14sp"-->
+        <!--                    android:textStyle="bold" />-->
+
+        <!--                &lt;!&ndash; Locked Content Card &ndash;&gt;-->
+        <!--                <androidx.cardview.widget.CardView-->
+        <!--                    android:layout_width="match_parent"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:layout_marginBottom="24dp"-->
+        <!--                    app:cardBackgroundColor="#2d2d44"-->
+        <!--                    app:cardCornerRadius="12dp"-->
+        <!--                    app:cardElevation="0dp">-->
+
+        <!--                    <LinearLayout-->
+        <!--                        android:layout_width="match_parent"-->
+        <!--                        android:layout_height="wrap_content"-->
+        <!--                        android:orientation="vertical"-->
+        <!--                        android:padding="20dp">-->
+
+        <!--                        &lt;!&ndash; Lock icon and expand button row &ndash;&gt;-->
+        <!--                        <LinearLayout-->
+        <!--                            android:layout_width="match_parent"-->
+        <!--                            android:layout_height="wrap_content"-->
+        <!--                            android:layout_marginBottom="16dp"-->
+        <!--                            android:gravity="center_vertical"-->
+        <!--                            android:orientation="horizontal">-->
+
+        <!--                            <TextView-->
+        <!--                                android:layout_width="0dp"-->
+        <!--                                android:layout_height="wrap_content"-->
+        <!--                                android:layout_weight="1"-->
+        <!--                                android:text="+ Import"-->
+        <!--                                android:textColor="#ffffff"-->
+        <!--                                android:textSize="16sp" />-->
+
+        <!--                            <TextView-->
+        <!--                                android:layout_width="wrap_content"-->
+        <!--                                android:layout_height="wrap_content"-->
+        <!--                                android:text="+ Mô tả"-->
+        <!--                                android:textColor="#ffffff"-->
+        <!--                                android:textSize="14sp" />-->
+
+        <!--                        </LinearLayout>-->
+
+        <!--                        &lt;!&ndash; Description text &ndash;&gt;-->
+        <!--                        <TextView-->
+        <!--                            android:layout_width="match_parent"-->
+        <!--                            android:layout_height="wrap_content"-->
+        <!--                            android:layout_marginBottom="20dp"-->
+        <!--                            android:text="Một phương pháp mới giúp tạo học phần nhanh hơn!"-->
+        <!--                            android:textColor="#ffffff"-->
+        <!--                            android:textSize="16sp" />-->
+
+        <!--                        &lt;!&ndash; Try button &ndash;&gt;-->
+        <!--                        <Button-->
+        <!--                            android:layout_width="wrap_content"-->
+        <!--                            android:layout_height="wrap_content"-->
+        <!--                            android:layout_gravity="center"-->
+        <!--                            android:background="@drawable/button_rounder_blue"-->
+        <!--                            android:paddingHorizontal="32dp"-->
+        <!--                            android:paddingVertical="12dp"-->
+        <!--                            android:text="Làm thử"-->
+        <!--                            android:textColor="#ffffff"-->
+        <!--                            android:textSize="14sp" />-->
+
+        <!--                    </LinearLayout>-->
+        <!--                </androidx.cardview.widget.CardView>-->
+        <!--                <androidx.cardview.widget.CardView-->
+        <!--                    android:layout_width="match_parent"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:layout_marginBottom="16dp"-->
+        <!--                    app:cardBackgroundColor="#2d2d44"-->
+        <!--                    app:cardCornerRadius="12dp"-->
+        <!--                    app:cardElevation="0dp">-->
+
+        <!--                    <androidx.constraintlayout.widget.ConstraintLayout-->
+        <!--                        android:layout_width="match_parent"-->
+        <!--                        android:layout_height="wrap_content"-->
+        <!--                        android:paddingBottom="20dp">-->
+
+        <!--                        <EditText-->
+        <!--                            android:id="@+id/editTextText"-->
+        <!--                            android:layout_width="match_parent"-->
+        <!--                            android:layout_height="60dp"-->
+        <!--                            android:background="@android:color/transparent"-->
+        <!--                            android:inputType="text"-->
+        <!--                            android:textColor="@color/backgroundLight"-->
+        <!--                            app:layout_constraintTop_toTopOf="parent" />-->
+
+        <!--                        <View-->
+        <!--                            android:id="@+id/view1"-->
+        <!--                            android:layout_width="match_parent"-->
+        <!--                            android:layout_height="2dp"-->
+        <!--                            android:layout_marginTop="2dp"-->
+        <!--                            android:background="#ffffff"-->
+        <!--                            app:layout_constraintTop_toBottomOf="@id/editTextText" />-->
+
+        <!--                        <TextView-->
+        <!--                            android:id="@+id/textView1"-->
+        <!--                            android:layout_width="wrap_content"-->
+        <!--                            android:layout_height="wrap_content"-->
+        <!--                            android:layout_marginTop="2dp"-->
+        <!--                            android:text="THUẬT NGỮ"-->
+        <!--                            android:textColor="#ffffff"-->
+        <!--                            android:textSize="14sp"-->
+        <!--                            android:textStyle="bold"-->
+        <!--                            app:layout_constraintTop_toBottomOf="@id/view1"-->
+        <!--                            app:layout_editor_absoluteX="20dp" />-->
+
+        <!--                        <EditText-->
+        <!--                            android:id="@+id/editTextText2"-->
+        <!--                            android:layout_width="match_parent"-->
+        <!--                            android:layout_height="60dp"-->
+        <!--                            android:layout_marginTop="10dp"-->
+        <!--                            android:background="@android:color/transparent"-->
+        <!--                            android:inputType="text"-->
+        <!--                            android:textColor="@color/backgroundLight"-->
+        <!--                            app:layout_constraintTop_toBottomOf="@id/textView1" />-->
+
+        <!--                        <View-->
+        <!--                            android:id="@+id/view2"-->
+        <!--                            android:layout_width="match_parent"-->
+        <!--                            android:layout_height="2dp"-->
+        <!--                            android:background="#ffffff"-->
+        <!--                            app:layout_constraintTop_toBottomOf="@id/editTextText2"-->
+        <!--                            tools:layout_editor_absoluteX="20dp" />-->
+
+        <!--                        <TextView-->
+        <!--                            android:id="@+id/textView2"-->
+        <!--                            android:layout_width="wrap_content"-->
+        <!--                            android:layout_height="wrap_content"-->
+        <!--                            android:text="ĐỊNH NGHĨA"-->
+        <!--                            android:textColor="#ffffff"-->
+        <!--                            android:textSize="14sp"-->
+        <!--                            android:textStyle="bold"-->
+        <!--                            app:layout_constraintTop_toBottomOf="@id/view2"-->
+        <!--                            app:layout_editor_absoluteX="20dp" />-->
+
+        <!--                    </androidx.constraintlayout.widget.ConstraintLayout>-->
+        <!--                </androidx.cardview.widget.CardView>-->
+
+
+        <!--            </LinearLayout>-->
+
+        <!--        </ScrollView>-->
+        <!-- RecyclerView -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Floating Action Button -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="24dp"
+        android:src="@drawable/outline_add_24"
+        app:backgroundTint="#4169e1"
+        app:fabSize="mini"
+        app:tint="#ffffff" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start"
+        android:layout_margin="24dp"
+        android:src="@drawable/outline_add_task_24"
+        app:backgroundTint="#28a745"
+        app:fabSize="mini"
+        app:tint="#ffffff" />
 </FrameLayout>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#1b1b2f"
+    android:padding="16dp">
+
+    <!-- Tiêu đề AI -->
+    <TextView
+        android:id="@+id/tvAIHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="🤖 AI Quiz Generator"
+        android:textColor="#00FFFF"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:letterSpacing="0.05"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+    android:drawablePadding="8dp" />
+
+    <!-- Mô tả -->
+    <TextView
+        android:id="@+id/tvDesc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Nhập tên chủ đề và AI cần phải làm gì "
+        android:textColor="#CCCCCC"
+        android:textSize="14sp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintTop_toBottomOf="@id/tvAIHeader"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Card nhập liệu -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:cardCornerRadius="16dp"
+        app:cardBackgroundColor="#2d2d44"
+        app:cardElevation="4dp"
+        app:layout_constraintTop_toBottomOf="@id/tvDesc"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <!-- Tên chủ đề -->
+            <EditText
+                android:id="@+id/etCategory"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="🔍 Nhập tên chủ đề"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#AAAAAA"
+                android:textSize="16sp"
+                android:backgroundTint="#4169e1"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <!-- Mô tả cho AI -->
+            <EditText
+                android:id="@+id/etAIcanHelp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="📝 Mô tả AI cần làm gì"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#AAAAAA"
+                android:textSize="16sp"
+                android:backgroundTint="#4169e1"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toBottomOf="@id/etCategory"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+    <!--            <LinearLayout-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:orientation="vertical"-->
+    <!--                android:padding="20dp">-->
+
+    <!--                &lt;!&ndash; Lock icon and expand button row &ndash;&gt;-->
+    <!--                <LinearLayout-->
+    <!--                    android:layout_width="match_parent"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_marginBottom="16dp"-->
+    <!--                    android:gravity="start"-->
+    <!--                    android:orientation="horizontal">-->
+
+    <!--                    <TextView-->
+    <!--                        android:layout_width="0dp"-->
+    <!--                        android:layout_height="wrap_content"-->
+    <!--                        android:layout_weight="1"-->
+    <!--                        android:text="+ Import"-->
+    <!--                        android:textColor="#ffffff"-->
+    <!--                        android:textSize="16sp" />-->
+    <!--                    <ImageView-->
+    <!--                        android:layout_width="24dp"-->
+    <!--                        android:layout_height="24dp"-->
+    <!--                        android:layout_marginEnd="8dp"-->
+    <!--                        android:src="@drawable/ic_lock"-->
+    <!--                        app:tint="#ffd700" />-->
+    <!--&lt;!&ndash;                    <TextView&ndash;&gt;-->
+    <!--&lt;!&ndash;                        android:layout_width="wrap_content"&ndash;&gt;-->
+    <!--&lt;!&ndash;                        android:layout_height="wrap_content"&ndash;&gt;-->
+    <!--&lt;!&ndash;                        android:text="+ Mô tả"&ndash;&gt;-->
+    <!--&lt;!&ndash;                        android:textColor="#ffffff"&ndash;&gt;-->
+    <!--&lt;!&ndash;                        android:textSize="14sp" />&ndash;&gt;-->
+
+    <!--                </LinearLayout>-->
+
+    <!--                &lt;!&ndash; Description text &ndash;&gt;-->
+    <!--                <TextView-->
+    <!--                    android:layout_width="match_parent"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_marginBottom="20dp"-->
+    <!--                    android:text="Một phương pháp mới bằng file excel giúp tạo học phần nhanh hơn!"-->
+    <!--                    android:textColor="#ffffff"-->
+    <!--                    android:textSize="16sp" />-->
+
+    <!--                &lt;!&ndash; Try button &ndash;&gt;-->
+    <!--                <Button-->
+    <!--                    android:layout_width="wrap_content"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_gravity="center"-->
+    <!--                    android:background="@drawable/button_rounder_blue"-->
+    <!--                    android:paddingHorizontal="32dp"-->
+    <!--                    android:paddingVertical="12dp"-->
+    <!--                    android:text="Làm thử"-->
+    <!--                    android:textColor="#ffffff"-->
+    <!--                    android:textSize="14sp" />-->
+
+    <!--            </LinearLayout>-->

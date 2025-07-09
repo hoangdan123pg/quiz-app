@@ -1,5 +1,6 @@
 package com.example.project_quiz_app.view.fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -48,6 +49,20 @@ public class LoginFragment extends Fragment {
         Account existingAccount = db.accountDao().checkLogin(emailInput, passwordInput);
         if (existingAccount != null) {
             Toast.makeText(getContext(), "Login successfully!", Toast.LENGTH_SHORT).show();
+            //Lưu thông tin user với SharedPreferences
+            requireActivity().getSharedPreferences("user_info", Context.MODE_PRIVATE)
+                    .edit()
+                    .putString("user_id", String.valueOf(existingAccount.getId()))
+                    .putString("user_name", existingAccount.getUserName())
+                    .putString("user_email", existingAccount.getEmail())
+                    .putString("user_password", existingAccount.getPassword())
+                    .putString("user_avatar", existingAccount.getAvatarPath())
+                    .putInt("user_current_streak", existingAccount.getCurrentStreak())
+                    .putInt("user_best_streak", existingAccount.getBestStreak())
+                    .putString("user_last_study", existingAccount.getLastStudyDate())
+                    .putString("user_created", existingAccount.getCreatedDate())
+                    .putString("user_updated", existingAccount.getUpdatedDate())
+                    .apply();
 
             // chuyen sang activity main
             // Delay 1s rồi chuyển activity
