@@ -7,11 +7,19 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import com.example.project_quiz_app.dao.AccountDao;
+import com.example.project_quiz_app.dao.CategoryDao;
+import com.example.project_quiz_app.dao.FlashcardDao;
+import com.example.project_quiz_app.model.Account;
+import com.example.project_quiz_app.model.Category;
+import com.example.project_quiz_app.model.Flashcard;
 
-@Database(entities = {Account.class}, version = 1, exportSchema = false)
-public abstract class AppDatabase extends RoomDatabase {
 
-    public abstract AccountDao accountDao();
+@Database(entities = {Account.class, Category.class, Flashcard.class}, version = 2, exportSchema = false)
+    public abstract class AppDatabase extends RoomDatabase {
+
+        public abstract AccountDao accountDao();
+        public abstract CategoryDao categoryDao();
+        public abstract FlashcardDao flashcardDao();
     private static volatile AppDatabase INSTANCE;
     public static AppDatabase getInstance(Context context) {
         if (INSTANCE == null) {

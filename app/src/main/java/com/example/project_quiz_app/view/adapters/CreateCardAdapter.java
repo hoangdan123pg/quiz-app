@@ -3,6 +3,7 @@ package com.example.project_quiz_app.view.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,13 +12,17 @@ import com.example.project_quiz_app.R;
 import com.example.project_quiz_app.model.FlashcardHeaderItem;
 import com.example.project_quiz_app.model.FlashcardItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CreateCardAdapter extends RecyclerView.Adapter<CreateCardAdapter.CardViewHolder> {
+
     private FlashcardHeaderItem headerItem;
     private List<FlashcardItem> items;
 
-    // Constructor
+    private HeaderViewHolder headerViewHolder; // giữ HeaderViewHolder
+    private final List<ItemViewHolder> itemViewHolders = new ArrayList<>(); // giữ các ItemViewHolder
+
     public CreateCardAdapter(FlashcardHeaderItem headerItem, List<FlashcardItem> items) {
         this.headerItem = headerItem;
         this.items = items;
@@ -45,53 +50,96 @@ public class CreateCardAdapter extends RecyclerView.Adapter<CreateCardAdapter.Ca
     @Override
     public void onBindViewHolder(@NonNull CardViewHolder holder, int position) {
         if (getItemViewType(position) == 0) {
-            ((HeaderViewHolder) holder).bindHeader(headerItem);
+            HeaderViewHolder headerHolder = (HeaderViewHolder) holder;
+            headerHolder.bindHeader(headerItem);
+            headerViewHolder = headerHolder;  // lưu lại
         } else {
-            FlashcardItem item = items.get(position - 1); // Trừ 1 vì header chiếm vị trí 0
-            ((ItemViewHolder) holder).bindItem(item);
+            FlashcardItem item = items.get(position - 1);
+            ItemViewHolder itemHolder = (ItemViewHolder) holder;
+            itemHolder.bindItem(item);
+
+            // Lưu lại, tránh lưu trùng
+            if (!itemViewHolders.contains(itemHolder)) {
+                itemViewHolders.add(itemHolder);
+            }
         }
     }
 
     @Override
     public int getItemCount() {
-        return items.size() + 1; // +1 cho header
+        return items.size() + 1;
     }
 
-    // Base ViewHolder
+    // ======================== ViewHolder ===========================
+
     public static class CardViewHolder extends RecyclerView.ViewHolder {
         public CardViewHolder(@NonNull View itemView) {
             super(itemView);
         }
     }
 
-    // ViewHolder cho Header
     public class HeaderViewHolder extends CardViewHolder {
-       // TextView tvCategory, tvDescription;
+        private EditText tvCode, tvCategory, tvDescription;
+
         public HeaderViewHolder(@NonNull View itemView) {
             super(itemView);
-           // tvCategory = itemView.findViewById(R.id.tvCategory); // ID trong XML
-           // tvDescription = itemView.findViewById(R.id.tvDescription);
+            tvCode = itemView.findViewById(R.id.etCode);
+            tvCategory = itemView.findViewById(R.id.etCategory);
+            tvDescription = itemView.findViewById(R.id.etAIcanHelp);
         }
 
         public void bindHeader(FlashcardHeaderItem header) {
-          //  tvCategory.setText(header.getCategoryName());
-         //   tvDescription.setText(header.getDescription());
+            tvCode.setText(header.getCategortyTitle());
+            tvCategory.setText(header.getCategoryDescription());
+            tvDescription.setText(header.getDescriptionForAI());
+        }
+
+        public FlashcardHeaderItem getUpdatedHeader() {
+            return new FlashcardHeaderItem(
+                    tvCode.getText().toString().trim(),
+                    tvCategory.getText().toString().trim(),
+                    tvDescription.getText().toString().trim()
+            );
         }
     }
 
-    // ViewHolder cho Item
     public class ItemViewHolder extends CardViewHolder {
-       // TextView tvTerm, tvDefinition;
+        private EditText etTerm, etDefinition;
+
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
-         //   tvTerm = itemView.findViewById(R.id.tvTerm); // ID trong XML
-          //  tvDefinition = itemView.findViewById(R.id.tvDefinition);
+            etTerm = itemView.findViewById(R.id.editTextText);
+            etDefinition = itemView.findViewById(R.id.editTextText2);
         }
 
         public void bindItem(FlashcardItem item) {
-          //  tvTerm.setText(item.getTerm());
-         //   tvDefinition.setText(item.getDefinition());
+            etTerm.setText(item.getTerm());
+            etDefinition.setText(item.getDefinition());
         }
+
+        public FlashcardItem getUpdatedItem() {
+            return new FlashcardItem(
+                    etTerm.getText().toString().trim(),
+                    etDefinition.getText().toString().trim()
+            );
+        }
+    }
+
+    // =================== Phần lấy dữ liệu ========================
+
+    public FlashcardHeaderItem getUpdatedHeader() {
+        if (headerViewHolder != null) {
+            return headerViewHolder.getUpdatedHeader();
+        }
+        return headerItem;
+    }
+
+    public List<FlashcardItem> getUpdatedItems() {
+        List<FlashcardItem> updatedItems = new ArrayList<>();
+        for (ItemViewHolder holder : itemViewHolders) {
+            updatedItems.add(holder.getUpdatedItem());
+        }
+        return updatedItems;
     }
 }
 
@@ -143,4 +191,29 @@ public class CreateCardAdapter extends RecyclerView.Adapter<CreateCardAdapter.Ca
 //        // Example:
 //        // TextView title = itemView.findViewById(R.id.tv_title);
 //    }
+//}
+
+
+
+// 🟡 Thu thập dữ liệu từ giao diện (EditText)
+//public FlashcardHeaderItem getHeaderFromUI() {
+//    RecyclerView.ViewHolder vh = recyclerView.findViewHolderForAdapterPosition(0);
+//    if (vh instanceof HeaderViewHolder) {
+//        return ((HeaderViewHolder) vh).getUpdatedHeader();
+//    }
+//    return headerItem; // fallback nếu chưa bind được UI
+//}
+//
+//public List<FlashcardItem> getItemsFromUI() {
+//    List<FlashcardItem> updatedItems = new ArrayList<>();
+//    for (int i = 1; i < getItemCount(); i++) {
+//        RecyclerView.ViewHolder vh = recyclerView.findViewHolderForAdapterPosition(i);
+//        if (vh instanceof ItemViewHolder) {
+//            updatedItems.add(((ItemViewHolder) vh).getUpdatedItem());
+//        } else if (i - 1 < items.size()) {
+//            // fallback nếu ViewHolder chưa render (do off-screen)
+//            updatedItems.add(items.get(i - 1));
+//        }
+//    }
+//    return updatedItems;
 //}
