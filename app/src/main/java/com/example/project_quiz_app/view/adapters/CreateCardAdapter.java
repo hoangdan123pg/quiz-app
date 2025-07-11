@@ -119,6 +119,7 @@ public class CreateCardAdapter extends RecyclerView.Adapter<CreateCardAdapter.Ca
 
         public FlashcardItem getUpdatedItem() {
             return new FlashcardItem(
+                    0,
                     etTerm.getText().toString().trim(),
                     etDefinition.getText().toString().trim()
             );

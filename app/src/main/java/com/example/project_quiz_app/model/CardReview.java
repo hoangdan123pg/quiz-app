@@ -36,13 +36,13 @@ public class CardReview {
 
     @ColumnInfo(name = "review_type")
     @NonNull
-    private String reviewType; // 'correct' hoặc 'incorrect'
+    private String reviewType; // "viewed", "starred", "correct", "incorrect"
 
     @ColumnInfo(name = "is_starred")
     private int isStarred = 0; // 0 = không gán sao, 1 = gán sao
 
     // Constructor
-    public CardReview(int userId, int flashcardId, @NonNull String reviewType) {
+    public CardReview(int userId, int flashcardId, @NonNull String reviewType ) {
         this.userId = userId;
         this.flashcardId = flashcardId;
         this.reviewType = reviewType;

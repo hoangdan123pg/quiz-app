@@ -58,7 +58,7 @@ public class CreateFragment extends Fragment {
     }
 
     private void onClickAddItem(View view){
-        items.add(new FlashcardItem("", ""));
+        items.add(new FlashcardItem(0,"", ""));
         // Gọi hàm để thông báo RecyclerView cập nhật
         adapter.notifyItemInserted(items.size()); // vì có header nên vị trí là size hiện tại
         recyclerView.scrollToPosition(items.size()); // Cuộn đến item mới
@@ -120,7 +120,7 @@ public class CreateFragment extends Fragment {
     private void initSampleData() {
         header = new FlashcardHeaderItem("","", "");
         items = new ArrayList<>();
-        items.add(new FlashcardItem("", ""));
-        items.add(new FlashcardItem("", ""));
+        items.add(new FlashcardItem(0,"", ""));
+        items.add(new FlashcardItem(0,"", ""));
     }
 }

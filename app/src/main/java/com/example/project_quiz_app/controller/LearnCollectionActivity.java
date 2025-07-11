@@ -69,14 +69,15 @@ public class LearnCollectionActivity extends AppCompatActivity {
 
             // Thêm onClick nếu cần
             itemRoot.setOnClickListener(v -> {
-                Toast.makeText(this, "Click: " + category.getId(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Click: " + category.getCategoryName(), Toast.LENGTH_SHORT).show();
                 // Hoặc mở activity khác
                 // Tạo Intent để mở Activity mới
                 Intent intent = new Intent(this, ActivityFlashCard.class);
 
                 // Truyền category_id theo key là "category_id"
                 intent.putExtra("category_id", category.getId());
-
+                intent.putExtra("category_name", category.getCategoryName());
+                intent.putExtra("category_description", category.getDescription());
                 // Mở Activity
                 startActivity(intent);
             });

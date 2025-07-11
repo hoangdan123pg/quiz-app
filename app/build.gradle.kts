@@ -53,4 +53,7 @@ dependencies {
 
     // Optional - Test helpers
     testImplementation("androidx.room:room-testing:$room_version")
+    // depedency  Material Components
+    implementation ("com.google.android.material:material:1.10.0")
+
 }
