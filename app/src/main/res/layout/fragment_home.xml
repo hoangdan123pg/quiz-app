@@ -33,11 +33,10 @@
             android:layout_height="48dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:background="@drawable/outline_add_task_24"
+            android:background="@drawable/bg_cricle"
             android:contentDescription="User Avatar"
             android:padding="8dp"
-            android:src="@drawable/outline_add_task_24"
-            app:tint="#FFFFFF"
+            android:src="@drawable/avt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -82,7 +81,7 @@
                     android:layout_height="120dp"
                     android:layout_marginBottom="16dp"
                     android:contentDescription="Fire Streak Icon"
-                    android:src="@drawable/outline_add_task_24"
+                    android:src="@drawable/fire"
                     app:tint="#f97316" />
 
                 <TextView
@@ -131,7 +130,7 @@
                     android:layout_height="32dp"
                     android:layout_marginBottom="8dp"
                     android:contentDescription="Learn Icon"
-                    android:src="@drawable/outline_add_task_24"
+                    android:src="@drawable/outline_auto_stories_24"
                     app:tint="#f97316" />
 
                 <TextView
@@ -177,7 +176,7 @@
                     android:layout_height="32dp"
                     android:layout_marginBottom="8dp"
                     android:contentDescription="Practice Icon"
-                    android:src="@drawable/outline_add_task_24"
+                    android:src="@drawable/outline_call_made_24"
                     app:tint="#f97316" />
 
                 <TextView

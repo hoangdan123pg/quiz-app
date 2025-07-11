@@ -18,6 +18,9 @@ import com.example.project_quiz_app.controller.MainActivity;
 import com.example.project_quiz_app.model.Account;
 import com.example.project_quiz_app.model.AppDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 public class LoginFragment extends Fragment {
     private AppDatabase db;
     private TextView btnRegister;
@@ -48,6 +51,7 @@ public class LoginFragment extends Fragment {
         // check account
         Account existingAccount = db.accountDao().checkLogin(emailInput, passwordInput);
         if (existingAccount != null) {
+            updateStreakIfNeeded(existingAccount);
             Toast.makeText(getContext(), "Login successfully!", Toast.LENGTH_SHORT).show();
             //Lưu thông tin user với SharedPreferences
             requireActivity().getSharedPreferences("user_info", Context.MODE_PRIVATE)
@@ -77,6 +81,52 @@ public class LoginFragment extends Fragment {
             Toast.makeText(getContext(), "Login failed!", Toast.LENGTH_SHORT).show();
         }
     }
+    private void updateStreakIfNeeded(Account existingAccount) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String today = sdf.format(new Date());
+
+        String lastStudyDate = existingAccount.getLastStudyDate();
+        int currentStreak = existingAccount.getCurrentStreak();
+        int bestStreak = existingAccount.getBestStreak();
+
+        if (lastStudyDate != null && !lastStudyDate.isEmpty()) {
+            try {
+                Date lastStudy = sdf.parse(lastStudyDate);
+                Calendar lastStudyCal = Calendar.getInstance();
+                lastStudyCal.setTime(lastStudy);
+
+                Calendar todayCal = Calendar.getInstance();
+
+                long diffMillis = todayCal.getTimeInMillis() - lastStudyCal.getTimeInMillis();
+                long diffDays = diffMillis / (24 * 60 * 60 * 1000);
+
+                if (diffDays == 1) {
+                    currentStreak++;
+                } else if (diffDays > 1) {
+                    currentStreak = 1;
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            currentStreak = 1;
+        }
+
+        if (currentStreak > bestStreak) {
+            bestStreak = currentStreak;
+        }
+
+        String updatedDate = today;
+        db.accountDao().updateStreak(existingAccount.getId(), currentStreak, bestStreak, today, updatedDate);
+
+        // Cập nhật lại dữ liệu trong account object
+        existingAccount.setCurrentStreak(currentStreak);
+        existingAccount.setBestStreak(bestStreak);
+        existingAccount.setLastStudyDate(today);
+        existingAccount.setUpdatedDate(updatedDate);
+    }
+
     private void btnRegisterClick(View view) {
         requireActivity().getSupportFragmentManager()
                 .beginTransaction()
