@@ -1,66 +1,115 @@
 package com.example.project_quiz_app.view.fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
 
 import com.example.project_quiz_app.R;
+import com.example.project_quiz_app.model.Account;
+import com.example.project_quiz_app.model.AppDatabase;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProfileFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ProfileFragment extends Fragment {
+    private AppDatabase db;
+    private ImageView ivAvatar;
+    private EditText etUsername;
+    private TextView tvEmail, tvCurrentStreak, tvBestStreak;
+    private Button btnChangeAvatar, btnSave;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private SharedPreferences prefs;
+    private Account currentUser;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private void bindingView(View view) {
+        // 1) init Room
+        db = AppDatabase.getInstance(requireContext());
 
-    public ProfileFragment() {
-        // Required empty public constructor
-    }
+        // 2) prefs
+        prefs = requireActivity()
+                .getSharedPreferences("user_info", Context.MODE_PRIVATE);
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProfileFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProfileFragment newInstance(String param1, String param2) {
-        ProfileFragment fragment = new ProfileFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+        // 3) views
+        ivAvatar        = view.findViewById(R.id.iv_avatar);
+        etUsername      = view.findViewById(R.id.et_username);
+        tvEmail         = view.findViewById(R.id.tv_email);
+        tvCurrentStreak = view.findViewById(R.id.tv_current_streak);
+        tvBestStreak    = view.findViewById(R.id.tv_best_streak);
+        btnChangeAvatar = view.findViewById(R.id.btn_change_avatar);
+        btnSave         = view.findViewById(R.id.btn_save);
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+        // 4) load from prefs & db
+        int userId = Integer.parseInt(prefs.getString("user_id", "0"));
+        currentUser = db.accountDao().getAccountByEmail(
+                prefs.getString("user_email", null)
+        );
+        if (currentUser != null) {
+            etUsername.setText(currentUser.getUserName());
+            tvEmail.setText(currentUser.getEmail());
+            tvCurrentStreak.setText(
+                    String.valueOf(currentUser.getCurrentStreak())
+            );
+            tvBestStreak.setText(
+                    String.valueOf(currentUser.getBestStreak())
+            );
+            String avatar = prefs.getString("user_avatar", "");
+            if (!avatar.isEmpty()) {
+                ivAvatar.setImageURI(Uri.parse(avatar));
+            }
         }
     }
+
+    private void bindingAction() {
+        // (1) change avatar flow, if you want:
+        btnChangeAvatar.setOnClickListener(v -> {
+            // TODO: launch an imagepicker and update ivAvatar & currentUser.avatarPath
+        });
+
+        // (2) save button
+        btnSave.setOnClickListener(v -> {
+            String newName = etUsername.getText().toString().trim();
+            if (newName.isEmpty()) {
+                Toast.makeText(getContext(),
+                        "Username cannot be empty", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            // update object + DB
+            currentUser.setUserName(newName);
+            db.accountDao().updateAccount(currentUser);
+
+            // update SharedPreferences
+            prefs.edit()
+                    .putString("user_name", currentUser.getUserName())
+                    .putString("user_avatar", currentUser.getAvatarPath())
+                    .putInt("user_current_streak", currentUser.getCurrentStreak())
+                    .putInt("user_best_streak", currentUser.getBestStreak())
+                    .putString("user_last_study", currentUser.getLastStudyDate())
+                    .putString("user_updated", currentUser.getUpdatedDate())
+                    .apply();
+
+            Toast.makeText(getContext(),
+                    "Profile updated successfully", Toast.LENGTH_SHORT).show();
+        });
+    }
+
+    public ProfileFragment() { /* required empty constructor */ }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        View view = inflater.inflate(
+                R.layout.fragment_profile, container, false
+        );
+        bindingView(view);
+        bindingAction();
+        return view;
     }
 }
