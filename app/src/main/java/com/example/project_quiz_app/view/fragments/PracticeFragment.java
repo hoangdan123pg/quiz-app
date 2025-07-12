@@ -84,6 +84,13 @@ public class PracticeFragment extends Fragment implements PracticeActivity.Pract
         ((PracticeActivity) requireActivity()).loadTests(this);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        // reload the list every time the fragment is shown
+        ((PracticeActivity) requireActivity()).loadTests(this);
+    }
+
     private void deleteTest(UserTest test) {
         executor.execute(() -> {
             db.userTestDao().deleteTest(test);
