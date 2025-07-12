@@ -3,7 +3,6 @@ package com.example.project_quiz_app.dao;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
-import androidx.room.Update;
 
 import com.example.project_quiz_app.model.Account;
 @Dao
@@ -21,7 +20,4 @@ public interface AccountDao {
     // check login
     @Query("SELECT * FROM user_profile WHERE email = :email AND password = :password LIMIT 1")
     Account checkLogin(String email, String password);
-
-    @Update
-    void updateAccount(Account account);
 }
