@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- Single direct child -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Test Title -->
+        <EditText
+            android:id="@+id/et_test_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Test Title"/>
+
+        <!-- Container for dynamic questions -->
+        <LinearLayout
+            android:id="@+id/container_questions"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
+            <!-- Question blocks will be added here dynamically -->
+        </LinearLayout>
+
+        <!-- Buttons bar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end"
+            android:layout_marginTop="16dp">
+
+            <Button
+                android:id="@+id/btn_add_question"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+ Add Question"/>
+
+            <Button
+                android:id="@+id/btn_save_test"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Save Test"
+                android:layout_marginStart="8dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

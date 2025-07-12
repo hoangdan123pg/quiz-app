@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -18,15 +19,18 @@ import android.widget.Toast;
 
 import com.example.project_quiz_app.R;
 import com.example.project_quiz_app.controller.LearnCollectionActivity;
+import com.example.project_quiz_app.controller.PracticeActivity;
 
 public class HomeFragment extends Fragment {
     private LinearLayout llLearn, llPractice;
+    private CardView cardPractice;
     private TextView tvGreeting, tvStreakText;
 
     private void bindingView(View view) {
         llLearn = view.findViewById(R.id.llLearn);
         tvGreeting = view.findViewById(R.id.tvGreeting);
         tvStreakText = view.findViewById(R.id.tvStreakText);
+        cardPractice = view.findViewById(R.id.cardPractice);
     }
     private void bindingAction() {
         // Lấy user_id từ SharedPreferences
@@ -38,9 +42,16 @@ public class HomeFragment extends Fragment {
         }
 
         llLearn.setOnClickListener(this::onClickLearn);
+        cardPractice.setOnClickListener(this::onClickPractice);
         tvGreeting.setText("Hello, " + userIdStr);
         tvStreakText.setText("Current Streak: " + streak);
     }
+
+    private void onClickPractice(View view) {
+        Intent intent = new Intent(getActivity(), PracticeActivity.class);
+        startActivity(intent);
+    }
+
     private void onClickLearn(View view) {
         // Chuyen sang activity LearnCollectionActivity
         Intent intent = new Intent(getActivity(), LearnCollectionActivity.class);
