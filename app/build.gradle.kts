@@ -55,5 +55,8 @@ dependencies {
     testImplementation("androidx.room:room-testing:$room_version")
     // depedency  Material Components
     implementation ("com.google.android.material:material:1.10.0")
+    // dependency https
+    implementation ("com.squareup.okhttp3:okhttp:4.10.0")
+
 
 }

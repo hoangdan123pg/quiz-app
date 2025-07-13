@@ -1,66 +1,96 @@
 package com.example.project_quiz_app.view.fragments;
 
+import static java.lang.Integer.parseInt;
+
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.Switch;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.project_quiz_app.R;
+import com.example.project_quiz_app.controller.ActivityFlashCard;
+import com.example.project_quiz_app.model.AppDatabase;
+import com.example.project_quiz_app.model.Category;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CollectionFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.List;
+
 public class CollectionFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private AppDatabase db;
+    private LinearLayout llCategories;
+    List<Category> listCategories;
 
     public CollectionFragment() {
-        // Required empty public constructor
+        // Constructor rỗng bắt buộc
     }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CollectionFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static CollectionFragment newInstance(String param1, String param2) {
-        CollectionFragment fragment = new CollectionFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    private void bindingView(View view) {
+        // Khởi tạo Room Database
+        db = AppDatabase.getInstance(requireContext());
+        llCategories = view.findViewById(R.id.llCategories);
+        // Lấy thông tin từ sharedPreferences
+        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("user_info", Context.MODE_PRIVATE);
+        String userIdStr = sharedPreferences.getString("user_id", null);
+        if (userIdStr == null) {
+            return;
+        }
+        listCategories = db.categoryDao().getAllCategories(parseInt(userIdStr));
+        Log.d("Category Log", listCategories.toString());
     }
+    private void bindingAction(){
+        loadCategories();
+    }
+    private void loadCategories() {
+        // thêm vào LinearLayout
+        llCategories.removeAllViews(); // Xóa các category cũ nếu có
+        LayoutInflater inflater = LayoutInflater.from(requireContext());
+        for (Category category : listCategories) {
+            // Inflate layout item_category.xml
+            View categoryView = inflater.inflate(R.layout.item_category_manager, llCategories, false);
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            // Ánh xạ các view bên trong item_category.xml
+            LinearLayout itemRoot = categoryView.findViewById(R.id.itemRoot1);
+            TextView tvCategoryName = categoryView.findViewById(R.id.tvCategoryName1);
+            TextView tvCount = categoryView.findViewById(R.id.tvCount1);
+            Switch swCategory = categoryView.findViewById(R.id.switch1);
+            // Set dữ liệu cho category
+            tvCategoryName.setText(category.getCategoryName());
+            tvCount.setText("Tổng số thẻ: "+category.getCardCount());
+            if (category.getIsPublic() == 1) {
+                swCategory.setChecked(true);
+            } else {
+                swCategory.setChecked(false);
+            }
+
+            // Thêm onClick nếu cần
+            itemRoot.setOnClickListener(v -> {
+                Toast.makeText(requireContext() , "Click: " + category.getCategoryName(), Toast.LENGTH_SHORT).show();
+                // Hoặc mở activity khác
+
+            });
+            // Thêm view vào LinearLayout
+            llCategories.addView(categoryView);
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_collection, container, false);
+        // Nạp layout cho fragment
+        View view = inflater.inflate(R.layout.fragment_collection, container, false);
+
+        bindingView(view);
+        bindingAction();
+        return view;
     }
 }

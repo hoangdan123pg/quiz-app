@@ -3,18 +3,18 @@
 
     <item
         android:id="@+id/nav_home"
-        android:icon="@drawable/ic_launcher_background"
+        android:icon="@drawable/outline_add_home_24"
         android:title="Home" />
     <item
         android:id="@+id/nav_create"
-        android:icon="@drawable/ic_launcher_background"
+        android:icon="@drawable/outline_add_24"
         android:title="Create" />
     <item
         android:id="@+id/nav_collection"
-        android:icon="@drawable/ic_launcher_background"
-        android:title="Collection" />
+        android:icon="@drawable/outline_category_24"
+        android:title="category" />
     <item
         android:id="@+id/nav_profile"
-        android:icon="@drawable/ic_launcher_background"
+        android:icon="@drawable/outline_contacts_product_24"
         android:title="Profile" />
 </menu>

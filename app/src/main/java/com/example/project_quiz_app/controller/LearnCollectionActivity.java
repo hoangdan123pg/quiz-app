@@ -45,7 +45,7 @@ public class LearnCollectionActivity extends AppCompatActivity {
             return;
         }
         listCategories = db.categoryDao().getAllCategories(parseInt(userIdStr));
-        Log.d("Category", listCategories.toString());
+        Log.d("Category Log", listCategories.toString());
     }
     private void bindingAction() {
         btnBack.setOnClickListener(view -> finish());
