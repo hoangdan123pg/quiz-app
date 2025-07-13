@@ -20,7 +20,7 @@ import com.example.project_quiz_app.model.Flashcard;
 
 @Database(entities = {Account.class, Category.class, Flashcard.class, CardReview.class, UserTest.class,              // ← add this
         UserTestQuestion.class,
-        UserTestChoice.class}, version = 6, exportSchema = false)
+        UserTestChoice.class}, version = 7, exportSchema = false)
     public abstract class AppDatabase extends RoomDatabase {
 
         public abstract AccountDao accountDao();
