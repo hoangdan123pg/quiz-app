@@ -23,21 +23,12 @@
         android:id="@+id/btnAI"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:text="AI"
-        app:layout_constraintBottom_toTopOf="@+id/btnPractice"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <!-- Nút Practice -->
-    <Button
-        android:id="@+id/btnPractice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Practice"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="16dp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

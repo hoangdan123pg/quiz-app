@@ -55,7 +55,8 @@ public class ActivityFlashCard extends AppCompatActivity {
 
     private TextView textAI; // Thêm vào khai báo biến
 
-    private String apiKey = "UwU";
+    String apiKey = "AIzaSyBpDniAT-VQ2BoMhTFVi__LuDQ-6zUMgCo";
+    String apiKey2 = "AIzaSyDiOeEzgF0qTsxUwkJ-3vMTZ8QF5Edhkn4";
     private void bindingView() {
         rcFlashcard = findViewById(R.id.recyclerView);
         btnAI = findViewById(R.id.btnAI);
@@ -371,6 +372,7 @@ public class ActivityFlashCard extends AppCompatActivity {
 
 
         String url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=" + apiKey;
+        Log.d("GeminiAPI", "Request URL: " + url);
 
         String escapedMessage = message.replace("\"", "\\\"")
                 .replace("\n", "\\n")
