@@ -55,8 +55,8 @@ public class ActivityFlashCard extends AppCompatActivity {
 
     private TextView textAI; // Thêm vào khai báo biến
 
-    String apiKey = "AIzaSyBpDniAT-VQ2BoMhTFVi__LuDQ-6zUMgCo";
-    String apiKey2 = "AIzaSyDiOeEzgF0qTsxUwkJ-3vMTZ8QF5Edhkn4";
+    String apiKey = "uwu";
+    String apiKey2 = "uwu";
     private void bindingView() {
         rcFlashcard = findViewById(R.id.recyclerView);
         btnAI = findViewById(R.id.btnAI);
