@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:background="#1A1A3A"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="4dp"
+    android:padding="8dp"
+    android:gravity="center_vertical">
+
+    <RadioButton
+        android:id="@+id/rb_correct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:buttonTint="#f97316"/>
+
+    <EditText
+        android:id="@+id/et_choice_text"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:hint="Choice"
+        android:textColorHint="#AAA"
+        android:textColor="#FFF"
+        android:background="@null"/>
+
+    <ImageButton
+        android:id="@+id/btn_remove_choice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_delete"
+        app:tint="#F44336"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Remove choice"/>
+</LinearLayout>

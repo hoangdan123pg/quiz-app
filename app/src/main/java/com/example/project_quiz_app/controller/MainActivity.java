@@ -70,4 +70,8 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentContainerView, homeFragment).commit();
     }
+
+    public void selectProfileTab() {
+        bottomNavigationView.setSelectedItemId(R.id.nav_profile);
+    }
 }

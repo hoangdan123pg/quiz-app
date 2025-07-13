@@ -22,7 +22,6 @@ public interface AccountDao {
     @Query("SELECT * FROM user_profile WHERE email = :email AND password = :password LIMIT 1")
     Account checkLogin(String email, String password);
 
-    //update steak
     @Update
     void updateAccount(Account account);
     @Query("UPDATE user_profile SET current_streak = :currentStreak, best_streak = :bestStreak, last_study_date = :lastStudyDate, updated_date = :updatedDate WHERE id = :userId")
