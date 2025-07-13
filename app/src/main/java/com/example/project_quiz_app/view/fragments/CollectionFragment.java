@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.project_quiz_app.R;
 import com.example.project_quiz_app.controller.ActivityFlashCard;
+import com.example.project_quiz_app.controller.UpdateFlashCard;
 import com.example.project_quiz_app.model.AppDatabase;
 import com.example.project_quiz_app.model.Category;
 
@@ -30,6 +31,8 @@ public class CollectionFragment extends Fragment {
     private AppDatabase db;
     private LinearLayout llCategories;
     List<Category> listCategories;
+
+//    private Switch swCategory;
 
     public CollectionFragment() {
         // Constructor rỗng bắt buộc
@@ -46,39 +49,51 @@ public class CollectionFragment extends Fragment {
         }
         listCategories = db.categoryDao().getAllCategories(parseInt(userIdStr));
         Log.d("Category Log", listCategories.toString());
+
+//        // Thêm onClick cho switch
+//        swCategory = view.findViewById(R.id.switch1);
     }
     private void bindingAction(){
         loadCategories();
+//        swCategory.setOnClickListener(this::onSwitchCheckedChanged);
     }
     private void loadCategories() {
         // thêm vào LinearLayout
         llCategories.removeAllViews(); // Xóa các category cũ nếu có
         LayoutInflater inflater = LayoutInflater.from(requireContext());
         for (Category category : listCategories) {
-            // Inflate layout item_category.xml
+            final Category currentCategory = category; // giữ đúng context trong lambda
+
             View categoryView = inflater.inflate(R.layout.item_category_manager, llCategories, false);
 
-            // Ánh xạ các view bên trong item_category.xml
             LinearLayout itemRoot = categoryView.findViewById(R.id.itemRoot1);
             TextView tvCategoryName = categoryView.findViewById(R.id.tvCategoryName1);
             TextView tvCount = categoryView.findViewById(R.id.tvCount1);
             Switch swCategory = categoryView.findViewById(R.id.switch1);
-            // Set dữ liệu cho category
-            tvCategoryName.setText(category.getCategoryName());
-            tvCount.setText("Tổng số thẻ: "+category.getCardCount());
-            if (category.getIsPublic() == 1) {
-                swCategory.setChecked(true);
-            } else {
-                swCategory.setChecked(false);
-            }
 
-            // Thêm onClick nếu cần
+            tvCategoryName.setText(currentCategory.getCategoryName());
+            tvCount.setText("Tổng số thẻ: " + currentCategory.getCardCount());
+            swCategory.setChecked(currentCategory.getIsPublic() == 1);
+
             itemRoot.setOnClickListener(v -> {
-                Toast.makeText(requireContext() , "Click: " + category.getCategoryName(), Toast.LENGTH_SHORT).show();
-                // Hoặc mở activity khác
-
+                //Toast.makeText(requireContext(), "Click: " + currentCategory.getCategoryName(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(v.getContext(), UpdateFlashCard.class);
+                  intent.putExtra("category_id", currentCategory.getId());
+               // intent.putExtra("category_name", currentCategory.getCategoryName());
+                startActivity(intent);
             });
-            // Thêm view vào LinearLayout
+
+            swCategory.setOnClickListener(v -> {
+                boolean isChecked = swCategory.isChecked();
+                int isPublic = isChecked ? 1 : 0;
+
+                Toast.makeText(requireContext(), "Switch is " + (isChecked ? "ON" : "OFF") + " for category: " + currentCategory.getId(), Toast.LENGTH_SHORT).show();
+
+                new Thread(() -> {
+                    db.categoryDao().updateCategoryIsPublic(currentCategory.getId(), isPublic);
+                }).start();
+            });
+
             llCategories.addView(categoryView);
         }
     }

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="#8babfe"
     tools:context=".view.fragments.LoginFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -11,26 +12,15 @@
         android:layout_height="match_parent"
         android:padding="24dp">
 
-        <!-- Logo -->
-        <ImageView
-            android:id="@+id/logo_lg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.2"
-            tools:src="@tools:sample/avatars" />
-
         <!-- Label Email -->
         <TextView
             android:id="@+id/label_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
             android:text="Email"
+            android:textColor="#FFFFFF"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/logo_lg" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <!-- Input Email -->
         <EditText
@@ -40,6 +30,8 @@
             android:layout_marginTop="8dp"
             android:ems="10"
             android:hint="Enter your email"
+            android:textColorHint="#FFFFFF"
+            android:textColor="#FFFFFF"
             android:inputType="textEmailAddress"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -52,6 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="Password"
+            android:textColor="#FFFFFF"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/email_lg" />
 
@@ -63,6 +56,8 @@
             android:layout_marginTop="8dp"
             android:ems="10"
             android:hint="Enter your password"
+            android:textColorHint="#FFFFFF"
+            android:textColor="#FFFFFF"
             android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -75,6 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Forgot password"
+            android:textColor="#FFFFFF"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/password_lg" />
 
@@ -85,18 +81,22 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Register Account"
+            android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/password_lg" />
 
+        <!-- Login Button -->
         <Button
             android:id="@+id/btn_login"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="Login"
+            android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_forgot_password" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

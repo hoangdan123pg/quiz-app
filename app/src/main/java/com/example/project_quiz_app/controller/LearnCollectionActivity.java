@@ -69,7 +69,7 @@ public class LearnCollectionActivity extends AppCompatActivity {
 
             // Thêm onClick nếu cần
             itemRoot.setOnClickListener(v -> {
-                Toast.makeText(this, "Click: " + category.getCategoryName(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Click: " + category.getCategoryName(), Toast.LENGTH_SHORT).show();
                 // Hoặc mở activity khác
                 // Tạo Intent để mở Activity mới
                 Intent intent = new Intent(this, ActivityFlashCard.class);

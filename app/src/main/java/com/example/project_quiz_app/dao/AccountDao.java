@@ -28,5 +28,8 @@ public interface AccountDao {
     @Query("UPDATE user_profile SET current_streak = :currentStreak, best_streak = :bestStreak, last_study_date = :lastStudyDate, updated_date = :updatedDate WHERE id = :userId")
     void updateStreak(int userId, int currentStreak, int bestStreak, String lastStudyDate, String updatedDate);
 
+    // get user by user_id;
+    @Query("SELECT user_name FROM user_profile WHERE id = :userId LIMIT 1")
+    String getUserNameById(int userId);
 
 }

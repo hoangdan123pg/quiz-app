@@ -161,7 +161,7 @@ public class CreateFlashcardAdapter extends RecyclerView.Adapter<CreateFlashcard
                 db.cardReviewDao().insertCardReview(cardReview);
             }
 
-            Toast.makeText(itemView.getContext(), "Đã thêm viewed cho " + flashcardItem.getId(), Toast.LENGTH_SHORT).show();
+           // Toast.makeText(itemView.getContext(), "Đã thêm viewed cho " + flashcardItem.getId(), Toast.LENGTH_SHORT).show();
         }
 
 

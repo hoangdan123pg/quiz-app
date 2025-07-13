@@ -210,33 +210,36 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardLearn">
 
-            <LinearLayout
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/tvCourseListTitle"
+                <LinearLayout
+                    android:id="@+id/category_is_public"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:gravity="center"
-                    android:text="List danh sách khóa học được chia sẻ"
-                    android:textColor="#FFFFFF"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerViewCourses"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:clipToPadding="false"
-                    android:paddingStart="8dp"
-                    android:paddingEnd="8dp"
-                     />
+                    <TextView
+                        android:id="@+id/tvCourseListTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:gravity="center"
+                        android:text="List danh sách khóa học được chia sẻ"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                    <!-- Đây là layout con sẽ chứa danh sách -->
+                    <LinearLayout
+                        android:id="@+id/layout_course_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" />
 
-            </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
 
         </androidx.cardview.widget.CardView>
 
