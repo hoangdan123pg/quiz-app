@@ -39,6 +39,8 @@ public class CreateTestFragment extends Fragment {
     private AppDatabase db;
     private int userId;
 
+    private ImageButton btnBack;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inf, ViewGroup c, Bundle b) {
         View v = inf.inflate(R.layout.fragment_create_test, c, false);
@@ -46,6 +48,7 @@ public class CreateTestFragment extends Fragment {
         btnAddQuestion     = v.findViewById(R.id.btn_add_question);
         btnSaveTest        = v.findViewById(R.id.btn_save_test);
         containerQuestions = v.findViewById(R.id.container_questions);
+        btnBack =            v.findViewById(R.id.btn_back_create);
 
         db = AppDatabase.getInstance(requireContext());
         SharedPreferences prefs = requireActivity()
@@ -57,6 +60,7 @@ public class CreateTestFragment extends Fragment {
 
         btnAddQuestion.setOnClickListener(x -> addQuestionBlock());
         btnSaveTest   .setOnClickListener(x -> saveTest());
+        btnBack.setOnClickListener(x -> requireActivity().finish());
         return v;
     }
 

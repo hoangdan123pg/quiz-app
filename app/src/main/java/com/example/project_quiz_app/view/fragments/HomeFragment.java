@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.example.project_quiz_app.R;
 import com.example.project_quiz_app.controller.LearnCollectionActivity;
+import com.example.project_quiz_app.controller.MainActivity;
 import com.example.project_quiz_app.controller.PracticeActivity;
 import com.example.project_quiz_app.controller.ProfileActivity;
 
@@ -62,8 +63,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void onClickHomeAvatar(View view) {
-        Intent intent = new Intent(getActivity(), ProfileActivity.class);
-        startActivity(intent);
+        ((MainActivity) requireActivity()).selectProfileTab();
     }
 
     private void onClickPractice(View view) {

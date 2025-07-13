@@ -1,15 +1,19 @@
 package com.example.project_quiz_app.view.fragments;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.project_quiz_app.R;
@@ -30,10 +34,13 @@ public class TakeTestFragment extends Fragment implements TakeTestActivity.TakeT
     private int currentIndex = 0;
     private int correctCount = 0;
 
+    private ImageButton btnBack;
+
     private void bindingView(View v) {
         tvQuestion = v.findViewById(R.id.tv_question);
         rgChoices  = v.findViewById(R.id.rg_choices);
         btnNext    = v.findViewById(R.id.btn_next);
+        btnBack = v.findViewById(R.id.btn_back_take);
     }
 
     private void bindingAction() {
@@ -66,6 +73,7 @@ public class TakeTestFragment extends Fragment implements TakeTestActivity.TakeT
                 requireActivity().finish();
             }
         });
+        btnBack.setOnClickListener(x -> requireActivity().finish());
     }
 
     @Override
@@ -96,9 +104,14 @@ public class TakeTestFragment extends Fragment implements TakeTestActivity.TakeT
         for (UserTestChoice c : choicesMap.get(q.id)) {
             RadioButton rb = new RadioButton(requireContext());
             rb.setText(c.choiceText);
-            rb.setTag(c.isCorrect);  // store correctness
+            rb.setTag(c.isCorrect);        // store correctness
+
+            rb.setTextColor(Color.WHITE);
+
+
             rgChoices.addView(rb);
         }
         rgChoices.clearCheck();
     }
+
 }

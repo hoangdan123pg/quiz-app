@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -35,6 +36,7 @@ public class PracticeFragment extends Fragment implements PracticeActivity.Pract
 
     private Executor executor = Executors.newSingleThreadExecutor();
     private AppDatabase db;
+    private ImageButton btnBack;
 
     private void bindingView(View v) {
         db = AppDatabase.getInstance(requireContext());
@@ -42,6 +44,7 @@ public class PracticeFragment extends Fragment implements PracticeActivity.Pract
 
         rvTests    = v.findViewById(R.id.recycler_tests);
         btnAddTest = v.findViewById(R.id.btn_add_test);
+        btnBack = v.findViewById(R.id.btn_back_practice);
 
         rvTests.setLayoutManager(new LinearLayoutManager(requireContext()));
         adapter = new TestAdapter(
@@ -63,6 +66,7 @@ public class PracticeFragment extends Fragment implements PracticeActivity.Pract
             Intent i = new Intent(requireActivity(), CreateTestActivity.class);
             startActivity(i);
         });
+        btnBack.setOnClickListener(x -> requireActivity().finish());
     }
 
     @Override

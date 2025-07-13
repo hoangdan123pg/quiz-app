@@ -2,34 +2,36 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:layout_marginTop="16dp"
+    android:padding="12dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp"
-    android:background="#EEE"
-    android:layout_marginTop="16dp">
+    android:background="#283593">   <!-- light blue block -->
 
-    <!-- Question text -->
     <EditText
         android:id="@+id/et_question_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter question"/>
+        android:hint="Enter question"
+        android:textColorHint="#CCC"
+        android:textColor="#FFF"
+        android:background="@null"
+        android:padding="8dp"/>
 
-    <!-- Container for choices -->
     <LinearLayout
         android:id="@+id/container_choices"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp">
-        <!-- First choice row added dynamically -->
-    </LinearLayout>
+        android:layout_marginTop="8dp"/>
+    <!-- dynamic choice rows -->
 
-    <!-- Add Choice button -->
     <Button
         android:id="@+id/btn_add_choice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="+ Add Choice"
-        android:layout_marginTop="8dp"/>
+        android:backgroundTint="#3949AB"
+        android:textColor="#FFF"/>
 </LinearLayout>

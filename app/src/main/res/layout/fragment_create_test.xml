@@ -1,54 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#0D0D2D"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:paddingTop="25dp">
 
-    <!-- Single direct child -->
-    <LinearLayout
-        android:orientation="vertical"
+<LinearLayout
+android:orientation="vertical"
+android:layout_width="match_parent"
+android:layout_height="wrap_content">
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="56dp"
+        android:padding="16dp"
+        android:gravity="center_vertical">
 
-        <!-- Test Title -->
-        <EditText
-            android:id="@+id/et_test_title"
+        <ImageButton
+            android:id="@+id/btn_back_create"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="?attr/homeAsUpIndicator"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:tint="#FFF"/>
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Test Title"/>
+            android:gravity="center"
+            android:text="New Test"
+            android:textSize="18sp"
+            android:textColor="#FFF"/>
+    </FrameLayout>
 
-        <!-- Container for dynamic questions -->
-        <LinearLayout
-            android:id="@+id/container_questions"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp">
-            <!-- Question blocks will be added here dynamically -->
-        </LinearLayout>
+<EditText
+    android:id="@+id/et_test_title"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Test Title"
+    android:textColorHint="#AAA"
+    android:textColor="#FFF"
+    android:backgroundTint="#1A1A3A"
+    android:padding="12dp"/>
 
-        <!-- Buttons bar -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="end"
-            android:layout_marginTop="16dp">
+<!-- Container for dynamic questions -->
+<LinearLayout
+    android:id="@+id/container_questions"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp">
+    <!-- Question blocks added here -->
+</LinearLayout>
 
-            <Button
-                android:id="@+id/btn_add_question"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="+ Add Question"/>
+<!-- Buttons bar -->
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="end"
+    android:layout_marginTop="16dp">
 
-            <Button
-                android:id="@+id/btn_save_test"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Save Test"
-                android:layout_marginStart="8dp"/>
-        </LinearLayout>
-    </LinearLayout>
+    <Button
+        android:id="@+id/btn_add_question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+ Add Question"
+        android:backgroundTint="#1A1A3A"
+        android:textColor="#FFF"/>
 
-</ScrollView>
+    <Button
+        android:id="@+id/btn_save_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Save Test"
+        android:backgroundTint="#1A1A3A"
+        android:textColor="#FFF"/>
+</LinearLayout>
+</LinearLayout>
+    </ScrollView>
