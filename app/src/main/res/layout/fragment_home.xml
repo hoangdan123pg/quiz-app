@@ -35,10 +35,12 @@
             android:layout_marginEnd="16dp"
             android:background="@drawable/bg_cricle"
             android:contentDescription="User Avatar"
-            android:padding="8dp"
             android:src="@drawable/avt"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:clipToOutline="true"
+            android:outlineProvider="background"
+            />
 
         <!-- Divider Line -->
         <View

@@ -5,14 +5,17 @@ import static android.content.Context.MODE_PRIVATE;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,17 +23,27 @@ import android.widget.Toast;
 import com.example.project_quiz_app.R;
 import com.example.project_quiz_app.controller.LearnCollectionActivity;
 import com.example.project_quiz_app.controller.PracticeActivity;
+import com.example.project_quiz_app.controller.ProfileActivity;
 
 public class HomeFragment extends Fragment {
     private LinearLayout llLearn, llPractice;
     private CardView cardPractice;
     private TextView tvGreeting, tvStreakText;
+    private ImageView ivHomeAvatar;
 
     private void bindingView(View view) {
         llLearn = view.findViewById(R.id.llLearn);
         tvGreeting = view.findViewById(R.id.tvGreeting);
         tvStreakText = view.findViewById(R.id.tvStreakText);
         cardPractice = view.findViewById(R.id.cardPractice);
+        ivHomeAvatar = view.findViewById(R.id.ivAvatar);
+
+        SharedPreferences prefs = requireActivity()
+                .getSharedPreferences("user_info", Context.MODE_PRIVATE);
+        String avatarUri = prefs.getString("user_avatar", "");
+        if (!TextUtils.isEmpty(avatarUri)) {
+            ivHomeAvatar.setImageURI(Uri.parse(avatarUri));
+        }
     }
     private void bindingAction() {
         // Lấy user_id từ SharedPreferences
@@ -45,6 +58,12 @@ public class HomeFragment extends Fragment {
         cardPractice.setOnClickListener(this::onClickPractice);
         tvGreeting.setText("Hello, " + userIdStr);
         tvStreakText.setText("Current Streak: " + streak);
+        ivHomeAvatar.setOnClickListener(this::onClickHomeAvatar);
+    }
+
+    private void onClickHomeAvatar(View view) {
+        Intent intent = new Intent(getActivity(), ProfileActivity.class);
+        startActivity(intent);
     }
 
     private void onClickPractice(View view) {
